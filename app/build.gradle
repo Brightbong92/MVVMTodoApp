@@ -46,9 +46,15 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    kapt {
+        correctErrorTypes true
+    }
 }
 
 dependencies {
+
+    kapt "org.xerial:sqlite-jdbc:3.34.0"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
@@ -66,16 +72,25 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+//    compose navigation
+
+
 
     // Compose dependencies
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
-    implementation "androidx.navigation:navigation-compose:2.4.0-rc01"
+    implementation "androidx.navigation:navigation-compose:2.5.3"
+    implementation "androidx.fragment:fragment-ktx:1.5.4"
 
     //Dagger - Hilt
+    implementation 'com.google.dagger:hilt-android:2.44'
+    kapt 'com.google.dagger:hilt-compiler:2.44'
+    kapt 'com.google.dagger:hilt-android-compiler:2.44'
 
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    /**
+     * Hilt 2.31에서 ViewModel 주입 방법이 바뀌었다고 합니다.
+     이제는 androidx.hilt:hilt-lifecycle-viewmodel 라이브러리 없이도 @HiltViewModel만 사용한다면 문제가 없다*/
+
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-beta01'
 
